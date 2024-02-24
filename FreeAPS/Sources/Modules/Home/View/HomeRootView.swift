@@ -267,6 +267,7 @@ extension Home {
                 let isOverride = fetchedPercent.first?.enabled ?? false
                 let isTarget = (state.tempTarget != nil)
                 HStack {
+                    /*
                     Button { state.showModal(for: .dataTable) }
                     label: {
                         ZStack(alignment: Alignment(horizontal: .leading, vertical: .bottom)) {
@@ -281,6 +282,7 @@ extension Home {
                         }
                     }.buttonStyle(.borderless)
                     Spacer()
+                    */
                     Button { state.showModal(for: .addCarbs(editMode: false, override: false)) }
                     label: {
                         ZStack(alignment: Alignment(horizontal: .trailing, vertical: .bottom)) {
@@ -299,26 +301,6 @@ extension Home {
                             }
                         }
                     }.buttonStyle(.borderless)
-                    Spacer()
-                    ZStack(alignment: Alignment(horizontal: .trailing, vertical: .bottom)) {
-                        Image(systemName: isOverride ? "person.fill" : "person")
-                            .symbolRenderingMode(.palette)
-                            .font(.custom("Buttons", size: 30))
-                            .foregroundStyle(.purple)
-                            .padding(8)
-                            .background(isOverride ? .purple.opacity(0.15) : .clear)
-                            .clipShape(RoundedRectangle(cornerRadius: 10))
-                    }
-                    .onTapGesture {
-                        if isOverride {
-                            showCancelAlert.toggle()
-                        } else {
-                            state.showModal(for: .overrideProfilesConfig)
-                        }
-                    }
-                    .onLongPressGesture {
-                        state.showModal(for: .overrideProfilesConfig)
-                    }
                     if state.useTargetButton {
                         Spacer()
                         Image(systemName: "target")
@@ -353,6 +335,26 @@ extension Home {
                     }
                     .buttonStyle(.borderless)
                     .foregroundColor(.insulin)
+                    Spacer()
+                    ZStack(alignment: Alignment(horizontal: .trailing, vertical: .bottom)) {
+                        Image(systemName: isOverride ? "person.fill" : "person")
+                            .symbolRenderingMode(.palette)
+                            .font(.custom("Buttons", size: 30))
+                            .foregroundStyle(.purple)
+                            .padding(8)
+                            .background(isOverride ? .purple.opacity(0.15) : .clear)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                    }
+                    .onTapGesture {
+                        if isOverride {
+                            showCancelAlert.toggle()
+                        } else {
+                            state.showModal(for: .overrideProfilesConfig)
+                        }
+                    }
+                    .onLongPressGesture {
+                        state.showModal(for: .overrideProfilesConfig)
+                    }
                     Spacer()
                     if state.allowManualTemp {
                         Button { state.showModal(for: .manualTempBasal) }
