@@ -272,6 +272,9 @@ extension Home {
             }
             .padding(.bottom, 5)
             .modal(for: .dataTable, from: self)
+            .onLongPressGesture {
+                state.showModal(for: .dataTable)
+            }
         }
 
         @ViewBuilder private func buttonPanel(_ geo: GeometryProxy) -> some View {
